@@ -103,10 +103,9 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
- alias zshconfig="mate ~/dotfiles/.zshrc"
+# alias zshconfig="mate ~/dotfiles/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 eval "$(pyenv init -)"
 
 
-alias vrc='vim ~/dotfiles/.vimrc'
-alias zrc='vim ~/dotfiles/.zshrc'
+
