@@ -1,10 +1,7 @@
 
 # dotfiles
 
-![Badge Status](https://services-as-a-ci)
-
-a record for myself
-
+This dotfiles can be used for develop your enviroment.
 
 ## Requirement
 
