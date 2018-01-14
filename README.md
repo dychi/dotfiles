@@ -1,7 +1,7 @@
 
 # dotfiles
 
-This dotfiles can be used for develop your enviroment.
+This dotfiles can be used for developing your enviroment.
 
 ## Requirement
 
