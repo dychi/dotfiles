@@ -58,6 +58,8 @@ if &term =~ "xterm"  "ペースト時のindent設定
 
     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
+" enable to copy and paste in tmux
+set clipboad+=unamed
 "----------------------------------------------------------
 " 文字
 "----------------------------------------------------------

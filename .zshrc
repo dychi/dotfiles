@@ -1,6 +1,6 @@
 # SSHで接続した先で日本語が使えるようにする
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+# export LC_CTYPE=en_US.UTF-8
+# export LC_ALL=en_US.UTF-8
 
 # エディタ
 export EDITOR=/usr/local/bin/vim
@@ -10,7 +10,7 @@ autoload -U compinit
 compinit
 
 ## バックグラウンドジョブが終了したらすぐに知らせる。
-setopt no_tify
+# setopt no_tify
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
