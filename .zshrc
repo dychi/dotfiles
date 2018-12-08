@@ -106,6 +106,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/dotfiles/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
-
+# visual studio code alias
+code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* }
 
