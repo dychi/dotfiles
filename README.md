@@ -13,7 +13,7 @@ This dotfiles can be used for developing your enviroment.
 
 ## Usage
 1. clone this directory
-2. download solarized(optional)
+2. move bin/solarized.vim to ~/.vim/colors/
 3. create sybolic link
 ```
 ln -s {path to dotfile}/.tmux.conf ~/.tmux.conf

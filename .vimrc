@@ -7,9 +7,9 @@ set ambiwidth=double " □や○文字が崩れる問題を解決
 "----------------------------------------------------------
 " カラースキーム
 "----------------------------------------------------------
-"syntax enable
-"set background=dark
-"colorscheme solarized
+syntax enable
+set background=dark
+colorscheme solarized
 
 "----------------------------------------------------------
 " カーソル
