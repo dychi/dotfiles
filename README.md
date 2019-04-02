@@ -7,9 +7,11 @@ This dotfiles can be used for developing your enviroment.
 
 - vim
 - zsh
-- tmux 
+- (tmux)
 - solarized
 - oh-my-zsh
+- pyenv
+- pyenv-virtualenv
 
 ## Usage
 1. clone this directory
