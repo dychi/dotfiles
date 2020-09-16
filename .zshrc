@@ -107,7 +107,40 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+# anyenv
+# export PATH="$HOME/.anyenv/bin:$PATH"
+# eval "$(anyenv init -)"
 
 # visual studio code alias
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* }
 
+# pipenv
+export PATH="$HOME/.local/bin:$PATH"
+export PIPENV_VENV_IN_PROJECT=1
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+
+# Git Alias
+alias gst='git status'
+alias gad='git add'
+alias gcm='git commit'
+alias gpush='git push'
+alias gpull='git pull'
+
+# Wifi Alias: on/off
+alias wo="networksetup -setairportpower en0 on"
+alias wf="networksetup -setairportpower en0 off"
+
+# Nodenv
+export PATH="$HOME/.nodenv/bin:$PATH"
+eval "$(nodenv init -)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/yamaokadaichi/GoogleCloudPlatform/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/yamaokadaichi/GoogleCloudPlatform/google-cloud-sdk/path.zsh.inc'; fi
+export CLOUDSDK_PYTHON=python3
+
+# go, goenvのパス
+export GOPATH="$HOME/go"
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+export PATH="$PATH:$GOPATH/bin"
