@@ -3,7 +3,7 @@
 
 This dotfiles can be used for developing your enviroment.
 
-## Requirement
+## Requirement(zsh)
 
 - vim
 - zsh
@@ -27,3 +27,14 @@ ln -s {path to dotfile}/.zshrc ~/.zshrc
 source ~/.{setting file}
 ```
 
+
+## Requirement(fish)
+- vim
+- fish
+- oh-my-fish
+
+## Usage
+
+```
+ln -s {path to dotfile}/config.fish ~/.config/fish/config.fish
+```
