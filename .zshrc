@@ -1,146 +1,80 @@
+#######################################################
+# User configuration
+#######################################################
+
 # SSHで接続した先で日本語が使えるようにする
 # export LC_CTYPE=en_US.UTF-8
 # export LC_ALL=en_US.UTF-8
 
 # エディタ
-export EDITOR=/usr/local/bin/vim
-
-## 補完機能の強化
-autoload -U compinit
-compinit
+export EDITOR=/usr/bin/vim
 
 ## バックグラウンドジョブが終了したらすぐに知らせる。
 # setopt no_tify
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# メモリに保存される履歴の件数
+export HISTSIZE=1000
+# 履歴ファイルに保存される履歴の件数
+export SAVEHIST=100000
+# 他のターミナルとヒストリーを共有
+setopt share_history
+# 重複を記録しない
+setopt hist_ignore_dups
+# 古いコマンドと同じものは無視
+setopt hist_save_no_dups
+# 補完時にヒストリを自動的に展開
+setopt hist_expand
 
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/yamaokadaichi/.oh-my-zsh
+# 入力した文字から始まるコマンドを履歴から検索し、上下矢印で補完
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bureau"
+## keybind
+bindkey -e
 
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# Other settings
+export DOTFILES_PATH=$HOME/dotfiles
+source "$DOTFILES_PATH/zsh/alias.zsh"
+source "$DOTFILES_PATH/zsh/plugins.zsh"
+source "$DOTFILES_PATH/zsh/functions.zsh"
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+#入力補完
+autoload -Uz compinit
+compinit
+zstyle ':completion:*:default' menu select=1
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.  # DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/home/daichi/dotfiles
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git bundler
-)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/dotfiles/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-# anyenv
-# export PATH="$HOME/.anyenv/bin:$PATH"
-# eval "$(anyenv init -)"
+#######################################################
+# Tools
+#######################################################
+# starship
+eval "$(starship init zsh)"
 
 # visual studio code alias
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* }
 
-# pipenv
-export PATH="$HOME/.local/bin:$PATH"
-export PIPENV_VENV_IN_PROJECT=1
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+# asdf
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
 
-# Git Alias
-alias gst='git status'
-alias gad='git add'
-alias gcm='git commit'
-alias gpush='git push'
-alias gpull='git pull'
 
-# Wifi Alias: on/off
-alias wo="networksetup -setairportpower en0 on"
-alias wf="networksetup -setairportpower en0 off"
 
-# Nodenv
-export PATH="$HOME/.nodenv/bin:$PATH"
-eval "$(nodenv init -)"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/yamaokadaichi/GoogleCloudPlatform/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/yamaokadaichi/GoogleCloudPlatform/google-cloud-sdk/path.zsh.inc'; fi
-export CLOUDSDK_PYTHON=python3
+# zsh-completions
+# if type brew &>/dev/null; then
+#   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+#   fpath=(${ASDF_DIR}/completions $fpath)
+#   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#   autoload -Uz compinit
+#   compinit
+#   zstyle ':completion:*:default' menu select=1
+# fi
 
 # go, goenvのパス
-export GOPATH="$HOME/go"
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
-eval "$(goenv init -)"
-export PATH="$PATH:$GOPATH/bin"
+# export GOPATH="$HOME/go"
+# export GOENV_ROOT="$HOME/.goenv"
+# export PATH="$GOENV_ROOT/bin:$PATH"
+# eval "$(goenv init -)"
+# export PATH="$PATH:$GOPATH/bin"
+
