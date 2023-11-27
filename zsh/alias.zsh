@@ -6,6 +6,7 @@ alias gpush='git push'
 alias gpull='git pull'
 alias gchout='git checkout'
 alias gdiff='git diff'
+alias gswitch='git switch'
 
 # alias cat
 if [[ $(command -v bat) ]]; then
@@ -19,5 +20,3 @@ alias ll='ls -Flh'
 # Wifi Alias: on/off
 # alias wo="networksetup -setairportpower en0 on"
 # alias wf="networksetup -setairportpower en0 off"
-
-
