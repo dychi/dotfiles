@@ -8,6 +8,7 @@ alias gpull='git pull'
 alias gchout='git checkout'
 alias gdiff='git diff'
 alias gswitch='git switch'
+alias gwt='git worktree'
 
 # alias cat
 if [[ $(command -v bat) ]]; then

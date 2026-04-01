@@ -42,11 +42,6 @@ source "$DOTFILES_PATH/zsh/alias.zsh"
 source "$DOTFILES_PATH/zsh/plugins.zsh"
 source "$DOTFILES_PATH/zsh/functions.zsh"
 
-#入力補完
-autoload -Uz compinit
-compinit
-zstyle ':completion:*:default' menu select=1
-
 #######################################################
 # Tools
 #######################################################
@@ -57,10 +52,9 @@ eval "$(starship init zsh)"
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* }
 
 # asdf
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+. $(brew --prefix asdf)/libexec/asdf.sh
 
-
-
+#入力補完
 # zsh-completions
 # if type brew &>/dev/null; then
 #   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
@@ -68,8 +62,20 @@ code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* }
 #   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 #   autoload -Uz compinit
 #   compinit
-#   zstyle ':completion:*:default' menu select=1
 # fi
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  fpath=(~/.zsh/completion $fpath)
+
+  ## 補完で小文字でも大文字にマッチさせる
+  zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+  ## 補完候補を一覧表示したとき、Tabや矢印で選択できるようにする
+  zstyle ':completion:*:default' menu select=1 
+
+  autoload -Uz compinit
+  compinit
+fi
 
 # go, goenvのパス
 # export GOPATH="$HOME/go"
@@ -77,4 +83,40 @@ code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* }
 # export PATH="$GOENV_ROOT/bin:$PATH"
 # eval "$(goenv init -)"
 # export PATH="$PATH:$GOPATH/bin"
+# asdfで管理しているすべてのバージョンのパスを通す
+# for version in $(ls ~/.asdf/installs/golang); do
+#     export PATH=$PATH:~/.asdf/installs/golang/$version/go/bin
+# done
+# GOPATH
+# export GOPATH=$(go env GOPATH)
+# export PATH=$PATH:$GOPATH/bin
+. ~/.asdf/plugins/golang/set-env.zsh
+export GOPATH="$(dirname "$(dirname "$(dirname "$(asdf which go)")")")/packages"
+export GOBIN="$GOPATH/bin"
+go env GOPATH
+go env GOBIN
+# asdfで管理しているすべてのバージョンのパスを通す
+for version in $(ls ~/.asdf/installs/golang); do
+    export PATH=$PATH:~/.asdf/installs/golang/$version/go/bin
+done
 
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# direnv
+eval "$(direnv hook zsh)"
+
+
+# Added by Windsurf
+export PATH="/Users/daichiyamaoka/.codeium/windsurf/bin:$PATH"
+
+# curl installed by brew
+export PATH="$(brew --prefix)/opt/curl/bin:$PATH"
+
+
+. "$HOME/.local/bin/env"
+
+# Shopify Hydrogen alias to local projects
+alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
+
+# 1Password
+eval "$(op completion zsh)"; compdef _op op
