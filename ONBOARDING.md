@@ -130,7 +130,13 @@ prefix は Emacs / readline の `Ctrl-a` / `Ctrl-b` と競合しないよう `Ct
 | 上下分割 | `prefix + -` |
 | ペイン移動 | `prefix + h/j/k/l`（herdr 既定） |
 
-上記以外は herdr の既定のままです。`Ctrl-q` が届かない端末では、`herdr/config.toml` の `prefix` を `ctrl+o` などに変更してください。
+上記以外のキーは herdr の既定のままです。
+
+その他、`herdr/config.toml` では次を有効にしています。
+
+- **日本語 IME 対応**（`[experimental]`）: `switch_ascii_input_source_in_prefix` で prefix モード中だけ ASCII 入力に切り替え、`reveal_hidden_cursor_for_cjk_ime` と `cjk_ime_agents = ["claude"]` で Claude Code 入力中も IME の候補ウィンドウがカーソル位置に出るようにします。
+- **ペイン履歴の保存**（`pane_history`）: サーバーを再起動しても画面履歴が残ります。
+- **ステータスバー右側**（`tab_bar_right`）: 日時を表示します。`Ctrl-q` が届かない端末では、`herdr/config.toml` の `prefix` を `ctrl+o` などに変更してください。
 
 ## ディレクトリ構成
 
