@@ -23,7 +23,7 @@ macOS 向けの個人 dotfiles。**PC を買い替えたときに、同じ環境
 
 - `.zshrc` / `.vimrc` / `.tmux.conf` → `setup.sh` で `$HOME` にリンク
 - `herdr/config.toml` → `setup.sh` で `~/.config/herdr/` にリンク
-- `starship.toml` → `ONBOARDING.md` の手順で `~/.config/` にリンク（`setup.sh` には未対応）
+- `starship.toml` → `setup.sh` で `~/.config/starship.toml` にリンク
 - `zsh/` → `.zshrc` から `source`（エイリアス、プラグイン、関数）
 - `bin/` → 補助スクリプトと vim カラースキーム
 

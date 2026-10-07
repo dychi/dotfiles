@@ -42,25 +42,18 @@ cd ~/dotfiles
 ./setup.sh
 ```
 
-`.zshrc` / `.vimrc` / `.tmux.conf` が `$HOME` に、`herdr/config.toml` が `~/.config/herdr/config.toml` にリンクされます。同名ファイルが既にある場合は先に退避してください（herdr は初回起動時に設定を生成することがあります）。
+`.zshrc` / `.vimrc` / `.tmux.conf` が `$HOME` に、`herdr/config.toml` が `~/.config/herdr/config.toml` に、`starship.toml` が `~/.config/starship.toml` にリンクされます。同名ファイルが既にある場合は先に退避してください（herdr は初回起動時に設定を生成することがあります）。
 
 herdr の設定を変更したら、herdr 内で `prefix+r`（`reload_config`）か `herdr server reload-config` で再読み込みできます。検証は `herdr config check` で行えます。
 
-### 3. starship 設定を配置する
-
-```sh
-mkdir -p ~/.config
-ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
-```
-
-### 4. vim カラースキームを配置する
+### 3. vim カラースキームを配置する
 
 ```sh
 mkdir -p ~/.vim/colors
 cp ~/dotfiles/bin/solarized.vim ~/.vim/colors/
 ```
 
-### 5. asdf で Go を入れる（必要なら）
+### 4. asdf で Go を入れる（必要なら）
 
 ```sh
 asdf plugin add golang
@@ -68,7 +61,7 @@ asdf install golang latest
 asdf global golang latest
 ```
 
-### 6. zsh をログインシェルにして起動し直す
+### 5. zsh をログインシェルにして起動し直す
 
 ```sh
 chsh -s $(which zsh)
