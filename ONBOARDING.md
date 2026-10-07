@@ -10,6 +10,7 @@
 - **バージョン管理**: asdf
 - **ターミナルマルチプレクサ**: tmux
 - **履歴検索**: peco（`Ctrl-R`）
+- **ターミナルワークスペース**: herdr
 - **便利ツール**: bat, direnv, 1Password CLI
 
 ## 前提条件
@@ -21,7 +22,7 @@ Homebrew で必要なツールを入れます。
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # 必須ツール
-brew install zsh vim tmux starship asdf direnv peco bat 1password-cli
+brew install zsh vim tmux starship asdf direnv peco bat 1password-cli herdr
 ```
 
 ## セットアップ手順
@@ -49,6 +50,17 @@ cd ~/dotfiles
 mkdir -p ~/.config
 ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
 ```
+
+### 3.5. herdr 設定を配置する
+
+```sh
+mkdir -p ~/.config/herdr
+ln -s ~/dotfiles/herdr/config.toml ~/.config/herdr/config.toml
+```
+
+`~/.config/herdr/config.toml` が既にある場合は先に退避してください（herdr は初回起動時に設定を生成することがあります）。設定を変更したら herdr 内で `prefix+r`（`reload_config`）か `herdr server reload-config` で再読み込みできます。
+
+設定の検証は `herdr config check` で行えます。
 
 ### 4. vim カラースキームを配置する
 
@@ -106,6 +118,20 @@ exec $SHELL -l
 - `Ctrl-R` — peco でコマンド履歴をインクリメンタル検索
 - `↑` / `↓` — 入力済み文字列で始まるコマンドを履歴から検索
 
+### herdr のキーバインド（`herdr/config.toml`）
+
+prefix は Emacs / readline の `Ctrl-a` / `Ctrl-b` と競合しないよう `Ctrl-q` にしています。CapsLock を Ctrl に割り当てていれば、ホームポジションで押せます。
+
+| 操作 | キー |
+|---|---|
+| prefix | `Ctrl-q` |
+| 設定の再読み込み | `prefix + r` |
+| 左右分割 | `prefix + shift+\` |
+| 上下分割 | `prefix + -` |
+| ペイン移動 | `prefix + h/j/k/l`（herdr 既定） |
+
+上記以外は herdr の既定のままです。`Ctrl-q` が届かない端末では、`herdr/config.toml` の `prefix` を `ctrl+o` などに変更してください。
+
 ## ディレクトリ構成
 
 ```
@@ -114,6 +140,8 @@ dotfiles/
 ├── .vimrc              # vim 設定
 ├── .tmux.conf          # tmux 設定
 ├── starship.toml       # プロンプト設定
+├── herdr/
+│   └── config.toml     # herdr 設定（~/.config/herdr/ にリンク）
 ├── setup.sh            # シンボリックリンク作成スクリプト
 ├── zsh/
 │   ├── alias.zsh       # エイリアス定義
