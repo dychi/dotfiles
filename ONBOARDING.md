@@ -42,7 +42,9 @@ cd ~/dotfiles
 ./setup.sh
 ```
 
-`.zshrc` / `.vimrc` / `.tmux.conf` が `$HOME` にリンクされます。同名ファイルが既にある場合は先に退避してください。
+`.zshrc` / `.vimrc` / `.tmux.conf` が `$HOME` に、`herdr/config.toml` が `~/.config/herdr/config.toml` にリンクされます。同名ファイルが既にある場合は先に退避してください（herdr は初回起動時に設定を生成することがあります）。
+
+herdr の設定を変更したら、herdr 内で `prefix+r`（`reload_config`）か `herdr server reload-config` で再読み込みできます。検証は `herdr config check` で行えます。
 
 ### 3. starship 設定を配置する
 
@@ -50,17 +52,6 @@ cd ~/dotfiles
 mkdir -p ~/.config
 ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
 ```
-
-### 3.5. herdr 設定を配置する
-
-```sh
-mkdir -p ~/.config/herdr
-ln -s ~/dotfiles/herdr/config.toml ~/.config/herdr/config.toml
-```
-
-`~/.config/herdr/config.toml` が既にある場合は先に退避してください（herdr は初回起動時に設定を生成することがあります）。設定を変更したら herdr 内で `prefix+r`（`reload_config`）か `herdr server reload-config` で再読み込みできます。
-
-設定の検証は `herdr config check` で行えます。
 
 ### 4. vim カラースキームを配置する
 
