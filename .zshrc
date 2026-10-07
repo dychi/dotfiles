@@ -48,9 +48,6 @@ source "$DOTFILES_PATH/zsh/functions.zsh"
 # starship
 eval "$(starship init zsh)"
 
-# visual studio code alias
-code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* }
-
 # asdf
 . $(brew --prefix asdf)/libexec/asdf.sh
 
@@ -105,10 +102,6 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 # direnv
 eval "$(direnv hook zsh)"
 
-
-# Added by Windsurf
-export PATH="/Users/daichiyamaoka/.codeium/windsurf/bin:$PATH"
-
 # curl installed by brew
 export PATH="$(brew --prefix)/opt/curl/bin:$PATH"
 
@@ -120,3 +113,4 @@ alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
 
 # 1Password
 eval "$(op completion zsh)"; compdef _op op
+eval "$(uv generate-shell-completion zsh)"
