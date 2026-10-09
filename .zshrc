@@ -87,15 +87,10 @@ fi
 # GOPATH
 # export GOPATH=$(go env GOPATH)
 # export PATH=$PATH:$GOPATH/bin
-. ~/.asdf/plugins/golang/set-env.zsh
-export GOPATH="$(dirname "$(dirname "$(dirname "$(asdf which go)")")")/packages"
+# go は mise 管理。GOPATH は固定し、go install したバイナリを PATH に通す
+export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
-go env GOPATH
-go env GOBIN
-# asdfで管理しているすべてのバージョンのパスを通す
-for version in $(ls ~/.asdf/installs/golang); do
-    export PATH=$PATH:~/.asdf/installs/golang/$version/go/bin
-done
+export PATH="$GOBIN:$PATH"
 
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
@@ -114,3 +109,6 @@ alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
 # 1Password
 eval "$(op completion zsh)"; compdef _op op
 eval "$(uv generate-shell-completion zsh)"
+
+# mise
+eval "$(mise activate zsh)"
