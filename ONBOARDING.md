@@ -22,8 +22,13 @@ Homebrew で必要なツールを入れます。
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # 必須ツール
-brew install zsh vim tmux starship mise asdf direnv peco bat 1password-cli herdr
+brew install zsh vim tmux starship asdf direnv peco bat 1password-cli herdr
+
+# mise（公式インストーラ。~/.local/bin/mise に入る。更新は `mise self-update`）
+curl https://mise.run | sh
 ```
+
+`~/.local/bin` が PATH に入っていることを確認してください（`.zshrc` が `. "$HOME/.local/bin/env"` を読み込みます）。
 
 ## セットアップ手順
 
