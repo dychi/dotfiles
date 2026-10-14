@@ -7,7 +7,7 @@
 - **シェル**: zsh
 - **プロンプト**: starship
 - **プラグインマネージャ**: zinit（初回起動時に自動インストール）
-- **バージョン管理**: asdf
+- **バージョン管理**: mise（Go / Node / pnpm）。python・ruby・terraform などは移行途中のため asdf が担当
 - **ターミナルマルチプレクサ**: tmux
 - **履歴検索**: peco（`Ctrl-R`）
 - **ターミナルワークスペース**: herdr
@@ -23,7 +23,12 @@ Homebrew で必要なツールを入れます。
 
 # 必須ツール
 brew install zsh vim tmux starship asdf direnv peco bat 1password-cli herdr
+
+# mise（公式インストーラ。~/.local/bin/mise に入る。更新は `mise self-update`）
+curl https://mise.run | sh
 ```
+
+`~/.local/bin` が PATH に入っていることを確認してください（`.zshrc` が `. "$HOME/.local/bin/env"` を読み込みます）。
 
 ## セットアップ手順
 
@@ -53,13 +58,16 @@ mkdir -p ~/.vim/colors
 cp ~/dotfiles/bin/solarized.vim ~/.vim/colors/
 ```
 
-### 4. asdf で Go を入れる（必要なら）
+### 4. mise で Go を入れる（必要なら）
+
+`.zshrc` が `mise activate` を実行するので、シェルを開き直してから入れます。
 
 ```sh
-asdf plugin add golang
-asdf install golang latest
-asdf global golang latest
+mise use --global go@1.23.4
+mise doctor   # "No problems found" になること
 ```
+
+`~/.config/mise/config.toml` はこのリポジトリの管理外です。`disable_tools` に asdf 担当のツール（python, ruby, terraform など）を入れておくと、mise と衝突しません。
 
 ### 5. zsh をログインシェルにして起動し直す
 
